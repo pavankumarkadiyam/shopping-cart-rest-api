@@ -25,41 +25,36 @@ public class CartControllers {
 	@Autowired
 	private CartService cartService;
 	
+	public User getCurrentUser() {
+		CustomUserDetails userDetails = (CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return userDetails.getUser();	
+	}
+	
 	//get current user cart
 	@GetMapping
 	public ResponseEntity<CartDTO> getCart(){
-		CustomUserDetails userDetails = (CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userDetails.getUser();
-		return cartService.getUserCart(user);
+		return cartService.getUserCart(getCurrentUser());
 	}
 	
 	@PostMapping("/{productId}")
 	public  ResponseEntity<CartDTO> addItemToCart(@PathVariable long productId){
-		CustomUserDetails userDetails = (CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userDetails.getUser();
-		return cartService.addProductToCart(user,productId);
+		return cartService.addProductToCart(getCurrentUser(),productId);
 	}
 	
 	@PutMapping("/update")
 	public ResponseEntity<CartDTO> updateCart(@RequestParam("productid") long productId, @RequestParam("quantity") int quantity){
-		CustomUserDetails userDetails = (CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userDetails.getUser();
-		return cartService.update(user, productId,quantity);
+		return cartService.update(getCurrentUser(), productId,quantity);
 	}
 	
 	//remove a cart item
 	@DeleteMapping("/remove/{productid}")
 	public ResponseEntity<CartDTO> deleteItem(@PathVariable long productid){
-		CustomUserDetails userDetails = (CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userDetails.getUser();
-		return cartService.deleteItem(user,productid);
+		return cartService.deleteItem(getCurrentUser(),productid);
 	}
 	
 	@DeleteMapping("/clear")
 	public ResponseEntity<CartDTO> deleteAll()
 	{
-		CustomUserDetails userDetails = (CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userDetails.getUser();
-		return cartService.deleteAllItems(user);
+		return cartService.deleteAllItems(getCurrentUser());
 	}
 }
