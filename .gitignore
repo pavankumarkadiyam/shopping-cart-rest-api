@@ -1,0 +1,36 @@
+# Ignore Eclipse project files
+.classpath
+.project
+.settings/
+
+# Ignore build directories
+/target/
+/out/
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore environment files
+.env
+
+# Ignore compiled class files
+*.class
+
+# Ignore Maven files (if using Maven)
+*.jar
+*.war
+
+# Ignore resource files
+/src/main/resources/*.properties
+/src/main/resources/*.yml
+/src/main/resources/*.yaml
+/src/main/resources/*.xml
+/src/main/resources/*.json
+/src/main/resources/*.txt
+/src/main/resources/*.csv
+/src/main/resources/*.log
+/src/main/resources/tmp/
