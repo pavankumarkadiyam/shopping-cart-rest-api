@@ -38,14 +38,3 @@ target/
 # Ignore Maven files (if using Maven)
 *.jar
 *.war
-
-# Ignore resource files
-/src/main/resources/*.properties
-/src/main/resources/*.yml
-/src/main/resources/*.yaml
-/src/main/resources/*.xml
-/src/main/resources/*.json
-/src/main/resources/*.txt
-/src/main/resources/*.csv
-/src/main/resources/*.log
-/src/main/resources/tmp/
